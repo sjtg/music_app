@@ -1,0 +1,76 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load staticfiles %}
+
+{% load widget_tweaks %}
+
+{% block content  %}
+
+<!-- Beginning of Container -->
+<div class="container">
+  <div class="row">
+
+      <div class="slider">
+        <ul class="slides">
+          <li>
+
+            <img src="{% static 'img/s00.png' %}" width="20%">
+
+           <!-- random image -->
+            <div class="caption center-align" >
+              <h3 class="green-text green-text  darken-4"><b class="textbackground">Urban Africa</b></h3>
+              <h5 class="green-text green-text  darken-4"><b class="textbackground">Real Estate Group</b></h5>
+
+            </div>
+          </li>
+          <li>
+            <img  src="{% static 'img/s4.jpg' %}"> <!-- random image -->
+            <div class="caption left-align">
+              <!-- <h3 class="black-text black-text  lighten-1"><b>Left Aligned Caption</b></h3> -->
+              <h3 class="green-text green-text  darken-4"><b class="textbackground">Commercial property development</b></h3>
+            </div>
+          </li>
+          <li>
+            <img src="{% static 'img/s5.jpg' %}" style=" width: 100%;"> <!-- random image -->
+            <div class="caption right-align">
+              <h3 class="green-text green-text  darken-4"><b  class="textbackground">Asset & property management</b></h3>
+              <!-- <h5 class="black-text black-text  lighten-1"><b  class="textbackground">Here's our small slogan.</b></h5> -->
+            </div>
+          </li>
+          <li>
+            <img src="{% static 'img/s3.jpg' %}"> <!-- random image -->
+            <div class="caption center-align">
+              <h3 class="green-text green-text  darken-4"><b class="textbackground">Commercial property advisory</b></h3>
+              <!-- <h5 class="black-text black-text lighten-1"><b class="textbackground">Here's our small slogan.</b></h5> -->
+            </div>
+          </li>
+          <li>
+            <img src="{% static 'img/s0.jpg' %}"> <!-- random image -->
+            <div class="caption right-align">
+              <!-- <h3 class="black-text black-text  lighten-1"><b>This is our big Tagline!</b></h3>
+              <h5 class="black-text black-text  lighten-1"><b>Here's our small slogan</b></h5> -->
+            </div>
+          </li>
+            <li>
+              <img src="{% static 'img/s1.jpg' %}" > <!-- random image -->
+              <div class="caption center-align">
+                <!-- <h3 class="black-text black-text  lighten-1"><b>This is our big Tagline!</b></h3>
+                <h5 class="black-text black-text lighten-1"><b>Here's our small slogan.</b></h5> -->
+              </div>
+            </li>
+            <li>
+              <img src="{% static 'img/s2.jpg' %}" width="50%"> <!-- random image -->
+              <div class="caption left-align">
+                <!-- <h3 class="black-text black-text  lighten-1"><b>This is our big Tagline!</b></h3>
+                <h5 class="black-text black-text  lighten-1"><b>Here's our small slogan.</b></h5> -->
+              </div>
+            </li>
+        </ul>
+      </div>
+
+    </dvi>
+</div>
+<!-- End of the container  -->

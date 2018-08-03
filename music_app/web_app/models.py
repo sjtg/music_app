@@ -51,6 +51,7 @@ class SongType(models.Model):
     AlbumNames = models.ForeignKey(AlbumType, related_name="AlbumTypes")
     SongName = models.CharField(max_length=100)
     Song = models.FileField(upload_to='Genre/Artist/Album/Song/', blank=False, null=True)
+    PublishedDate = models.DateTimeField(blank=True, null=True)
 
     def __unicode__(self):
         SongName = str(self.SongName)
