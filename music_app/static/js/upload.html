@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static  %}
+{% load widget_tweaks %}
+
+{% block content  %}
+
+<div class="container">
+  <h1 class="text-center logo my-4">
+    Upload Picture
+  </h1>
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data"  multiple novalidate>
+            {% csrf_token %}
+            {% include 'includes/form.html' %}
+
+            <br>
+            <button type="submit" class="btn btn-primary btn-block"><i class="material-icons left">add_a_photo</i>Upload</button>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
