@@ -18,28 +18,40 @@ def HomePage(request):
 #  List of Genres
 def Genres(request):
     Genrelist = GenreType.objects.all().order_by('Genre')
-    return render(request, 'website/', {'' : Genrelist})
+    return render(request, 'website/', {'newartist' : Genrelist})
 
 # List of Artist
 def ArtistLists(request):
     Artistlist = SongType.objects.all().order_by('PublishedDate')
-    return render(request, 'website/artistlist.html', {'NewSong' : Artistlist })
+    return render(request, 'website/artistlist.html', {'newartist' : Artistlist })
 
 
 # Artist Details
 def ArtistDetails(request, pk):
     Artistdetail = get_object_or_404(ArtistType, pk=pk)
-    return render('website/artistdetails.html', { : })
+    return render('website/artistdetails.html', {'newartist' : Artistdetail})
+
+# Album Details
+def AlbumLists(request, pk):
+    Albumlists = get_object_or_404(AlbumType, pk=pk)
+    return render('website/albumdetails.html', { 'newalbums': Albumlists})
 
 # Album Details
 def AlbumDetails(request, pk):
     Albumdetails = get_object_or_404(AlbumType, pk=pk)
-    return render('website/albumdetails.html', { : })
+    return render('website/albumdetails.html', {'newalbums' : Albumdetails})
+
+# Details about song
+def SongLists(request, pk):
+    Songlists = get_object_or_404(SongType, pk)
+    return render('website/songdetails.html', { 'newsongs' : Songlists})
 
 # Details about song
 def SongDetails(request, pk):
     Songdetails = get_object_or_404(SongType, pk)
-    return render('website/songdetails.html', { : })
+    return render('website/songdetails.html', { 'newsongs' : Songdetails})
+
+
 
 
 #  Add New Artist
