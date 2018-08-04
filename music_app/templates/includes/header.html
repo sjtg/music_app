@@ -9,19 +9,19 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li>
-        <a href="{% url 'home' %}" >
-          <img class="brand-logo" src="{% static 'img/12.png' %}" width="13.98%">
+        <a class="brand-logo" href="{% url 'Home' %}" >
+          MUSIC
         </a>
       </li>
       </ul>
       <ul class="right hide-on-med-and-down">
-        <li class="hoverable"><a href="{% url 'home'  %} ">About us</a></li>
+        <li class="hoverable"><a href="{% url 'Home'  %} ">About us</a></li>
         <li class="hoverable"><a href="#services">Services</a></li>
         <li class="hoverable"><a href="#team">Team</a></li>
-        <li class="hoverable"><a href="{% url 'post_list' %}">Blogs/Research</a></li>
+        <li class="hoverable"><a href="">Blogs/Research</a></li>
         {% if user.is_authenticated %}
-        <li class="hoverable"><a href="{% url 'post_new' %}">New Blog</a></li>
-        <li class="hoverable"><a href="{% url 'new_employee' %}">New Employee</a></li>
+        <li class="hoverable"><a href="">New Blog</a></li>
+        <li class="hoverable"><a href="">New Employee</a></li>
         {% endif %}
         <li class="hoverable"><a href="#contact">Contact us</a></li>
       </ul>
@@ -32,14 +32,14 @@
 </div>
 
 <ul class="sidenav" id="mobile-demo">
-  <li><a class="brand-logo" href="{% url 'home' %}">Urban Africa</a></li>
+  <li><a class="brand-logo" href="{% url 'Home' %}">Urban Africa</a></li>
   <li class="hoverable"><a href="#aboutus">About us</a></li>
   <li class="hoverable"><a href="#services">Services</a></li>
   <li class="hoverable"><a href="#team">Team</a></li>
-  <li class="hoverable"><a href="{% url 'post_list' %}">Blog/Research</a></li>
+  <li class="hoverable"><a href="">Blog/Research</a></li>
   {% if user.is_authenticated %}
-  <li class="hoverable"><a href="{% url 'post_new' %}">New Blog</a></li>
-  <li class="hoverable"><a href="{% url 'new_employee' %}">New Employee</a></li>
+  <li class="hoverable"><a href="">New Blog</a></li>
+  <li class="hoverable"><a href="">New Employee</a></li>
   {% endif %}
   <li class="hoverable"><a href="#contact">Contact us</a></li>
 </ul>
