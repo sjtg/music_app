@@ -43,24 +43,93 @@ def SongDetails(request, pk):
 
 
 #  Add New Artist
-def NewArtist(request):
+def NewArtists(request):
+    if request.method == "POST":
+        form = ArtistForm(request.POST, request.FILES)
+        if form.is_valid():
+            newartist = form.save()
+            newartist.user = request.user
+            newartist.DateJoined = timezone.now()
+            newartist.save()
+            return redirect('ArtistDetails', pk=newartist.pk)
+    else:
+        form = ArtistForm()
+    return render(request, 'website/newartist.html', {'form':form})
 
 
 
 #Edit Artist
-def EditArtist(request, pk):
-
+def EditArtists(request, pk):
+    newartist = get_object_or_404(ArtistType, pk=pk)
+    if request.method == "POST":
+        form = ArtistForm(request.POST, request.FILES, instance=newartist)
+        if form.is_valid():
+            newartist = form.save()
+            newartist.user = request.user
+            newartist.DateJoined = timezone.now()
+            newartist.save()
+            return redirect('ArtistDetails', pk=newartist.pk)
+    else:
+        form = ArtistForm(instance=newartist)
+    return render(request, 'website/editartists.html', {'form':form})
 
 #  Uploading New Album
-def NewAlbum(request):
+def NewAlbums(request):
+    if request.method == "POST":
+        form = NewAlbumForm(request.POST, request.FILES)
+        if form.is_valid():
+            newalbums = form.save()
+            newalbums.user = request.user
+            newalbums.YearReleased  = timezone.now()
+            newalbums.save()
+            return redirect('AlbumType', pk=newalbums.pk)
+    else:
+        form = NewAlbumForm()
+    return render(request, 'website/newalbums.html', {'form' : form})
+
+
 
 #  Edit Album
-def NewAlbum(request):
+def EditAlbums(request, pk):
+    newalbums = get_object_or_404(AlbumType, pk=pk)
+    if request.method == "POST":
+        form = NewAlbumForm(request.POST, request.FILES, instance=newalbums)
+        if form.is_valid():
+            newalbums = form.save()
+            newalbums.user = request.user
+            newalbums.YearReleased  = timezone.now()
+            newalbums.save()
+            return redirect('AlbumDetails', pk=newalbums.pk)
+    else:
+        form = NewAlbumForm(instance=newalbums)
+    return render(request, 'website/editalbums.html', {'form' : form})
 
 
 # Uploading New Song
-def UploadSong(request):
-
+def NewSong(request):
+    if request.method == "POST":
+        form = NewSongForm(request.POST, request.FILES)
+        if form.is_valid():
+            newsongs = form.save()
+            newsongs.user = request.user
+            newsongs.ReleaseDate = timezone.now()
+            newsongs.save()
+            return redirect('SongType', pk=newsongs.pk)
+    else:
+        form = NewSongForm()
+    return render(request, 'website/newsongs.html', {'form' : form})
 
 # Edit Song
-def EditSong(request):
+def EditSong(request, pk):
+    newsongs = get_object_or_404(SongType, pk=pk)
+    if request.method == "POST":
+        form = NewSongForm(request.POST, request.FILES, instance=newsongs)
+        if form.is_valid():
+            newsongs = form.save()
+            newsongs.user = request.user
+            newsongs.ReleaseDate = timezone.now()
+            newsongs.save()
+            return redirect('SongDetails', pk=newsongs.pk)
+    else:
+        form = NewSongForm(instance=newsongs)
+    return render(request, 'website/editnewsongs.html', {'form' : form})
