@@ -5,6 +5,8 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
+
+admin.site.register(BlogPosts)
 admin.site.register(GenreType)
 admin.site.register(ArtistType)
 admin.site.register(AlbumType)

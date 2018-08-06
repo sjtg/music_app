@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'web_app',
+    # 'blog',
     'widget_tweaks',
 ]
 

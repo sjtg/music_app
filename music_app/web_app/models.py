@@ -10,6 +10,18 @@ from django.db import models
 
 
 
+class BlogPosts(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    Titles =  models.CharField(max_length=100)
+    Description = models.TextField()
+    BlogImage = models.FileField(upload_to='Blog/Images/', blank=False, null=True)
+    PublishedDate = models.DateTimeField(blank=True, null=True)
+
+    def __unicode__(self):
+        Title = str(self.Title)
+        return Titles
+
+
 #Genre class
 class GenreType(models.Model):
     Genre = models.CharField(max_length=50)

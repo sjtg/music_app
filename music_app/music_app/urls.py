@@ -17,19 +17,24 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from web_app import views as web_views
+# from blog import views as blog_views
 from accounts import views as accounts_views
 from web_app import views
+# from blog import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.HomePage, name='Home'),
+    url(r'^$', views.HomePages, name='HomePages'),
     url(r'^genres/$', views.Genres, name='Genres'),
+
     url(r'^artistlist/$', views.ArtistLists, name='ArtistLists'),
     url(r'^artistdetails/(?P<pk>\d+)/$', views.ArtistDetails, name='ArtistDetails'),
+
     url(r'^albumlist/$', views.AlbumLists, name='AlbumLists'),
     url(r'^albumdetails/(?P<pk>\d+)/$', views.AlbumDetails, name='AlbumDetails'),
+
     url(r'^songlist/$', views.SongLists, name='SongLists'),
     url(r'^songdetails/(?P<pk>\d+)/$', views.SongDetails, name='SongDetails'),
     url(r'^artist/new/$', views.NewArtists, name='NewArtists'),
@@ -38,6 +43,12 @@ urlpatterns = [
     url(r'^albums/(?P<pk>\d+)/edit/$', views.EditAlbums, name='EditAlbums'),
     url(r'^songs/new/$', views.NewSong, name='NewSong'),
     url(r'^songs/(?P<pk>\d+)/edit/$', views.EditSong, name='EditSong'),
+
+    url(r'^blog/$', views.BlogList, name='BlogList'),
+    url(r'^blog/new/$', views.NewBlog, name='NewBlog'),
+    url(r'^blog/(?P<pk>\d+)/edit/$', views.EditBlog, name='EditBlog'),
+    url(r'^blog/(?P<pk>\d+)/$', views.BlogDetails, name='BlogDetails'),
+
     url(r'^signup/$', accounts_views.signup, name='signup' ),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),

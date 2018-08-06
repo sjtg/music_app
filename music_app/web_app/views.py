@@ -11,7 +11,7 @@ import time
 
 
 # Home HomePage
-def HomePage(request):
+def HomePages(request):
     Home = SongType.objects.all().order_by('PublishedDate')
     return render(request, 'website/index.html', {'NewSong' :  Home})
 
@@ -29,28 +29,34 @@ def ArtistLists(request):
 # Artist Details
 def ArtistDetails(request, pk):
     Artistdetail = get_object_or_404(ArtistType, pk=pk)
-    return render('website/artistdetails.html', {'newartist' : Artistdetail})
+    return render(request, 'website/artistdetails.html', {'newartist' : Artistdetail})
+
 
 # Album Details
 def AlbumLists(request, pk):
     Albumlists = get_object_or_404(AlbumType, pk=pk)
-    return render('website/albumdetails.html', { 'newalbums': Albumlists})
+    return render(request, 'website/albumdetails.html', { 'newalbums': Albumlists})
 
 # Album Details
 def AlbumDetails(request, pk):
     Albumdetails = get_object_or_404(AlbumType, pk=pk)
-    return render('website/albumdetails.html', {'newalbums' : Albumdetails})
+    return render(request, 'website/albumdetails.html', {'newalbums' : Albumdetails})
+
+# Delete Album
+
 
 # Details about song
 def SongLists(request, pk):
     Songlists = get_object_or_404(SongType, pk)
-    return render('website/songdetails.html', { 'newsongs' : Songlists})
+    return render(request, 'website/songdetails.html', { 'newsongs' : Songlists})
 
 # Details about song
 def SongDetails(request, pk):
     Songdetails = get_object_or_404(SongType, pk)
-    return render('website/songdetails.html', { 'newsongs' : Songdetails})
+    return render(request, 'website/songdetails.html', { 'newsongs' : Songdetails})
 
+
+# Delete song
 
 
 
@@ -85,6 +91,10 @@ def EditArtists(request, pk):
         form = ArtistForm(instance=newartist)
     return render(request, 'website/editartists.html', {'form':form})
 
+
+# Delete Artist
+
+
 #  Uploading New Album
 def NewAlbums(request):
     if request.method == "POST":
@@ -117,6 +127,9 @@ def EditAlbums(request, pk):
     return render(request, 'website/editalbums.html', {'form' : form})
 
 
+# Delete Artist
+
+
 # Uploading New Song
 def NewSong(request):
     if request.method == "POST":
@@ -126,7 +139,7 @@ def NewSong(request):
             newsongs.user = request.user
             newsongs.ReleaseDate = timezone.now()
             newsongs.save()
-            return redirect('SongType', pk=newsongs.pk)
+            return redirect('SongDetails', pk=newsongs.pk)
     else:
         form = NewSongForm()
     return render(request, 'website/newsongs.html', {'form' : form})
@@ -145,3 +158,50 @@ def EditSong(request, pk):
     else:
         form = NewSongForm(instance=newsongs)
     return render(request, 'website/editnewsongs.html', {'form' : form})
+
+
+
+# Blog list function
+def BlogList(request):
+    Bloglist = BlogPosts.objects.all().order_by('PublishedDate')
+    return render(request, 'website/bloglist.html', {'NewBlog' : Bloglist })
+
+# Blog details
+def BlogDetails(request, pk):
+    Blogdetails = get_object_or_404(BlogPost, pk=pk)
+    return render(request, 'website/blogdetails.html', {'NewBlog' : Blogdetails})
+
+
+# Blog delete
+# def Delete(request, pk):
+#      = BlogPosts.objects.get(pk=pk)
+#     member.delete()
+#     return redirect('/crud/')
+
+# New Blog POST
+def NewBlog(request):
+    if request.method == "POST":
+        form = NewBlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            newblogs = form.save()
+            newblogs.user = request.user
+            newblogs.PublishedDate = timezone.now()
+            newblogs.save()
+            return redirect('BlogList', pk=newblogs.pk)
+    else:
+        form = NewBlogForm()
+    return render(request, 'website/newblogs.html', {'form' : form})
+
+def EditBlog(request, pk):
+    newblogs = get_object_or_404(BlogPosts, pk=pk)
+    if request.method =="POST":
+        form = NewBlogForm(request.POST, request.FILES, instance=newblogs)
+        if form.is_valid():
+            newblogs = form.save()
+            newblogs.user = request.user
+            newblogs.PublishedDate = timezone.now()
+            newblogs.save()
+            return redirect('BlogList', pk=newblogs)
+    else:
+        form = NewBlogForm(instance=newblogs)
+    return render(request, 'website/editblogs.html', {'form' : form})
