@@ -29,26 +29,35 @@ urlpatterns = [
     url(r'^$', views.HomePages, name='HomePages'),
     url(r'^genres/$', views.Genres, name='Genres'),
 
-    url(r'^artistlist/$', views.ArtistLists, name='ArtistLists'),
-    url(r'^artistdetails/(?P<pk>\d+)/$', views.ArtistDetails, name='ArtistDetails'),
+    # Artist Urls
+    url(r'^artists/artistlist/$', views.ArtistLists, name='ArtistLists'),
+    url(r'^artists/artistdetails/(?P<pk>\d+)/$', views.ArtistDetails, name='ArtistDetails'),
+    url(r'^artists/new/$', views.NewArtists, name='NewArtists'),
+    url(r'^artists/(?P<pk>\d+)/edit/$', views.EditArtists, name='EditArtists'),
+    url(r'^artists/(?P<pk>\d+)/remove/$', views.RemoveArtist, name='RemoveArtist'),
 
-    url(r'^albumlist/$', views.AlbumLists, name='AlbumLists'),
-    url(r'^albumdetails/(?P<pk>\d+)/$', views.AlbumDetails, name='AlbumDetails'),
-
-    url(r'^songlist/$', views.SongLists, name='SongLists'),
-    url(r'^songdetails/(?P<pk>\d+)/$', views.SongDetails, name='SongDetails'),
-    url(r'^artist/new/$', views.NewArtists, name='NewArtists'),
-    url(r'^artist/(?P<pk>\d+)/edit/$', views.EditArtists, name='EditArtists'),
+    # Album urls
+    url(r'^albums/albumlist/$', views.AlbumLists, name='AlbumLists'),
+    url(r'^albums/albumdetails/(?P<pk>\d+)/$', views.AlbumDetails, name='AlbumDetails'),
     url(r'^albums/new/$', views.NewAlbums, name='NewAlbums'),
     url(r'^albums/(?P<pk>\d+)/edit/$', views.EditAlbums, name='EditAlbums'),
+    url(r'^albums/(?P<pk>\d+)/remove/$', views.RemoveAlbum, name='RemoveAlbum'),
+
+    # Songs urls
+    url(r'^songs/songlist/$', views.SongLists, name='SongLists'),
+    url(r'^songs/songdetails/(?P<pk>\d+)/$', views.SongDetails, name='SongDetails'),
     url(r'^songs/new/$', views.NewSong, name='NewSong'),
     url(r'^songs/(?P<pk>\d+)/edit/$', views.EditSong, name='EditSong'),
+    url(r'^song/(?P<pk>\d+)/remove/$', views.RemoveSong, name='RemoveSong'),
 
+    # Blog urls
     url(r'^blog/$', views.BlogList, name='BlogList'),
     url(r'^blog/new/$', views.NewBlog, name='NewBlog'),
     url(r'^blog/(?P<pk>\d+)/edit/$', views.EditBlog, name='EditBlog'),
     url(r'^blog/(?P<pk>\d+)/$', views.BlogDetails, name='BlogDetails'),
+    url(r'^blog/(?P<pk>\d+)/remove/$', views.RemoveBlog, name='RemoveBlog'),
 
+    # Accounts urls
     url(r'^signup/$', accounts_views.signup, name='signup' ),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),

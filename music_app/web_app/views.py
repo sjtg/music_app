@@ -56,11 +56,28 @@ def SongDetails(request, pk):
     return render(request, 'website/songdetails.html', { 'newsongs' : Songdetails})
 
 
+
+
+
+
 # Delete song
+@login_required
+def RemoveSong(request, pk):
+    songs = get_object_or_404(SongType, pk=pk)
+    if songs.is_valid():
+        newsongs = newsongs.delete()
+        newsongs.user = request.user
+        newsongs.delete()
+        return redirect('SongLists')
 
 
+# def RemoveSong(request, pk):
+#     newsongs = get_object_or_404(SongType, pk=pk)
+#     newsongs.delete()
+#     return redirect('post_list')
 
 #  Add New Artist
+@login_required
 def NewArtists(request):
     if request.method == "POST":
         form = ArtistForm(request.POST, request.FILES)
@@ -77,6 +94,7 @@ def NewArtists(request):
 
 
 #Edit Artist
+@login_required
 def EditArtists(request, pk):
     newartist = get_object_or_404(ArtistType, pk=pk)
     if request.method == "POST":
@@ -96,6 +114,7 @@ def EditArtists(request, pk):
 
 
 #  Uploading New Album
+@login_required
 def NewAlbums(request):
     if request.method == "POST":
         form = NewAlbumForm(request.POST, request.FILES)
@@ -112,6 +131,7 @@ def NewAlbums(request):
 
 
 #  Edit Album
+@login_required
 def EditAlbums(request, pk):
     newalbums = get_object_or_404(AlbumType, pk=pk)
     if request.method == "POST":
@@ -131,6 +151,7 @@ def EditAlbums(request, pk):
 
 
 # Uploading New Song
+@login_required
 def NewSong(request):
     if request.method == "POST":
         form = NewSongForm(request.POST, request.FILES)
@@ -145,6 +166,7 @@ def NewSong(request):
     return render(request, 'website/newsongs.html', {'form' : form})
 
 # Edit Song
+@login_required
 def EditSong(request, pk):
     newsongs = get_object_or_404(SongType, pk=pk)
     if request.method == "POST":
@@ -179,6 +201,7 @@ def BlogDetails(request, pk):
 #     return redirect('/crud/')
 
 # New Blog POST
+@login_required
 def NewBlog(request):
     if request.method == "POST":
         form = NewBlogForm(request.POST, request.FILES)
@@ -192,6 +215,8 @@ def NewBlog(request):
         form = NewBlogForm()
     return render(request, 'website/newblogs.html', {'form' : form})
 
+# Edit Blog
+@login_required
 def EditBlog(request, pk):
     newblogs = get_object_or_404(BlogPosts, pk=pk)
     if request.method =="POST":
