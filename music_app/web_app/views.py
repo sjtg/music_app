@@ -43,12 +43,12 @@ def AlbumDetails(request, pk):
     return render(request, 'website/albumdetails.html', {'newalbums' : Albumdetails})
 
 
-# Details about song
+# Song List
 def SongLists(request, pk):
     Songlists = get_object_or_404(SongType, pk)
     return render(request, 'website/songlists.html', { 'newsongs' : Songlists})
 
-# Details about song
+# Song Details 
 def SongDetails(request, pk):
     Songdetails = get_object_or_404(SongType, pk)
     return render(request, 'website/songdetails.html', { 'newsongs' : Songdetails})

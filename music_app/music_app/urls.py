@@ -30,21 +30,21 @@ urlpatterns = [
     url(r'^genres/$', views.Genres, name='Genres'),
 
     # Artist Urls
-    url(r'^artists/artistlist/$', views.ArtistLists, name='ArtistLists'),
+    url(r'^artists/artistlists/$', views.ArtistLists, name='ArtistLists'),
     url(r'^artists/artistdetails/(?P<pk>\d+)/$', views.ArtistDetails, name='ArtistDetails'),
     url(r'^artists/new/$', views.NewArtists, name='NewArtists'),
     url(r'^artists/(?P<pk>\d+)/edit/$', views.EditArtists, name='EditArtists'),
     url(r'^artists/(?P<pk>\d+)/remove/$', views.RemoveArtist, name='RemoveArtist'),
 
     # Album urls
-    url(r'^albums/albumlist/$', views.AlbumLists, name='AlbumLists'),
+    url(r'^albums/albumlists/$', views.AlbumLists, name='AlbumLists'),
     url(r'^albums/albumdetails/(?P<pk>\d+)/$', views.AlbumDetails, name='AlbumDetails'),
     url(r'^albums/new/$', views.NewAlbums, name='NewAlbums'),
     url(r'^albums/(?P<pk>\d+)/edit/$', views.EditAlbums, name='EditAlbums'),
     url(r'^albums/(?P<pk>\d+)/remove/$', views.RemoveAlbum, name='RemoveAlbum'),
 
     # Songs urls
-    url(r'^songs/songlist/$', views.SongLists, name='SongLists'),
+    url(r'^songs/songlists/$', views.SongLists, name='SongLists'),
     url(r'^songs/songdetails/(?P<pk>\d+)/$', views.SongDetails, name='SongDetails'),
     url(r'^songs/new/$', views.NewSong, name='NewSong'),
     url(r'^songs/(?P<pk>\d+)/edit/$', views.EditSong, name='EditSong'),
