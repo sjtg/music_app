@@ -35,7 +35,7 @@ def ArtistDetails(request, pk):
 # Album Details
 def AlbumLists(request, pk):
     Albumlists = get_object_or_404(AlbumType, pk=pk)
-    return render(request, 'website/albumdetails.html', { 'newalbums': Albumlists})
+    return render(request, 'website/albumlists.html', { 'newalbums': Albumlists})
 
 # Album Details
 def AlbumDetails(request, pk):
@@ -43,12 +43,10 @@ def AlbumDetails(request, pk):
     return render(request, 'website/albumdetails.html', {'newalbums' : Albumdetails})
 
 
-
-
 # Details about song
 def SongLists(request, pk):
     Songlists = get_object_or_404(SongType, pk)
-    return render(request, 'website/songdetails.html', { 'newsongs' : Songlists})
+    return render(request, 'website/songlists.html', { 'newsongs' : Songlists})
 
 # Details about song
 def SongDetails(request, pk):
@@ -61,7 +59,7 @@ def SongDetails(request, pk):
 @login_required
 def NewArtists(request):
     if request.method == "POST":
-        form = ArtistForm(request.POST, request.FILES)
+        form = NewNewArtistForm(request.POST, request.FILES)
         if form.is_valid():
             newartist = form.save()
             newartist.user = request.user
@@ -69,8 +67,8 @@ def NewArtists(request):
             newartist.save()
             return redirect('ArtistDetails', pk=newartist.pk)
     else:
-        form = ArtistForm()
-    return render(request, 'website/newartist.html', {'form':form})
+        form = NewArtistForm()
+    return render(request, 'website/newartists.html', {'form':form})
 
 
 
@@ -79,7 +77,7 @@ def NewArtists(request):
 def EditArtists(request, pk):
     newartist = get_object_or_404(ArtistType, pk=pk)
     if request.method == "POST":
-        form = ArtistForm(request.POST, request.FILES, instance=newartist)
+        form = NewArtistForm(request.POST, request.FILES, instance=newartist)
         if form.is_valid():
             newartist = form.save()
             newartist.user = request.user
@@ -87,7 +85,7 @@ def EditArtists(request, pk):
             newartist.save()
             return redirect('ArtistDetails', pk=newartist.pk)
     else:
-        form = ArtistForm(instance=newartist)
+        form = NewArtistForm(instance=newartist)
     return render(request, 'website/editartists.html', {'form':form})
 
 
@@ -165,7 +163,7 @@ def EditSong(request, pk):
 # Blog list function
 def BlogLists(request):
     Bloglist = BlogPosts.objects.all().order_by('PublishedDate')
-    return render(request, 'website/bloglist.html', {'NewBlog' : Bloglist })
+    return render(request, 'website/bloglists.html', {'NewBlog' : Bloglist })
 
 # Blog details
 def BlogDetails(request, pk):

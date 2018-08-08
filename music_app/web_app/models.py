@@ -36,10 +36,10 @@ class ArtistType(models.Model):
     GenreType = models.ForeignKey(GenreType, related_name="GenreTypes")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     Name = models.CharField(max_length=100)
-    Born  = models.DateTimeField(auto_now=True, auto_now_add=False)
+    Born  = models.DateTimeField(blank=True, null=True)
     Bio = models.TextField()
     DateJoined = models.DateTimeField(blank=True, null=True)
-    Artist = models.FileField(upload_to='Genre/Artist/', blank=False, null=True)
+    ArtistPictures = models.FileField(upload_to='Genre/Artist/', blank=False, null=True)
 
 
     def __unicode__(self):
@@ -51,7 +51,7 @@ class AlbumType(models.Model):
     ArtistName = models.ForeignKey(ArtistType, related_name="ArtistTypes")
     AlbumName = models.CharField(max_length=100)
     AlbumCover = models.FileField(upload_to='Genre/Artist/Album/', blank=False, null=True)
-    YearReleased = models.DateTimeField(auto_now=True, auto_now_add=False)
+    YearReleased = models.DateTimeField(blank=True, null=True)
 
 
     def __unicode__(self):
