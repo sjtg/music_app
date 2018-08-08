@@ -8,20 +8,26 @@
 
 {% block content  %}
 
+{% if newsongs.SongName %}
 <div class="container">
   <div class="player">
     <div class="like waves-effect waves-light">
       <i class="icon-heart"></i>
     </div>
+      <img src="{{newsongs.SongImage.url}}"  class="thumbnail" width="20%">
+
+
+
     <div class="mask"></div>
     <ul class="player-info info-one">
-      <li>Rock'n'Roll Nerd</li>
-      <li>Tim Minchin</li>
-      <li>5:34</li>
+      <li>{{newsongs.AlbumNames}}</li>
+      <li>{{newsongs.SongName}}</li>
+      {{ArtistName}}
+    Timer  <li>5:34</li>
     </ul>
     <ul class="player-info info-two">
-      <li>Rock'n'Roll Nerd</li>
-      <li>Tim Minchin</li>
+      <li>{{newsongs.AlbumNames}}</li>
+      <li>{{newsongs.SongName}}</li>
       <li><span id="duration"></span><i> / </i>5:34</li>
     </ul>
     <div id="play-button" class="unchecked">
@@ -46,9 +52,9 @@
   </div>
 </div>
 <audio id="audio-player" ontimeupdate="SeekBar()" ondurationchange="CreateSeekBar()" preload="auto" loop>
-  <source src="https://michael-zhigulin.github.io/mz-codepen-projects/Material%20Design%20UI%20Audio%20Player/audio/Tim%20Minchin%20%E2%80%94%20Rock%20n%20Roll%20Nerd.ogg" type="audio/ogg">
-      <source src="https://michael-zhigulin.github.io/mz-codepen-projects/Material%20Design%20UI%20Audio%20Player/audio/Tim%20Minchin%20%E2%80%94%20Rock%20n%20Roll%20Nerd.mp3" type="audio/mpeg">
+  <source src="{{newsongs.Song.url}}" type="audio/ogg">
+      <source src="{{newsongs.Song.url}}" type="audio/mpeg">
 </audio>
-
+  {% endif %}
 
 {% endblock %}

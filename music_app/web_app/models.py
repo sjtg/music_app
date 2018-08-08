@@ -63,6 +63,7 @@ class AlbumType(models.Model):
 class SongType(models.Model):
     AlbumNames = models.ForeignKey(AlbumType, related_name="AlbumTypes")
     SongName = models.CharField(max_length=100)
+    SongImage = models.FileField(upload_to='Genre/Artist/Album/Song/Image', blank=False, null=True)
     Song = models.FileField(upload_to='Genre/Artist/Album/Song/', blank=False, null=True)
     ReleaseDate = models.DateTimeField(blank=True, null=True)
 

@@ -185,7 +185,7 @@ nav{
 .player {
   position: relative;
   background-color: #ffffff;
-  background-image: url("https://michael-zhigulin.github.io/mz-codepen-projects/Material%20Design%20UI%20Audio%20Player/tim_minchin_piano.jpg");
+  /* background-image: url("https://michael-zhigulin.github.io/mz-codepen-projects/Material%20Design%20UI%20Audio%20Player/tim_minchin_piano.jpg"); */
   width: 550px;
   height: 375px;
   border-radius: 3px;
