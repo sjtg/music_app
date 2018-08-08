@@ -33,8 +33,8 @@ def ArtistDetails(request, pk):
 
 
 # Album Details
-def AlbumLists(request, pk):
-    Albumlists = get_object_or_404(AlbumType, pk=pk)
+def AlbumLists(request):
+    Albumlists = get_object_or_404(AlbumType)
     return render(request, 'website/albumlists.html', { 'newalbums': Albumlists})
 
 # Album Details
@@ -44,13 +44,13 @@ def AlbumDetails(request, pk):
 
 
 # Song List
-def SongLists(request, pk):
-    Songlists = get_object_or_404(SongType, pk)
+def SongLists(request):
+    Songlists = get_object_or_404(SongType)
     return render(request, 'website/songlists.html', { 'newsongs' : Songlists})
 
-# Song Details 
+# Song Details
 def SongDetails(request, pk):
-    Songdetails = get_object_or_404(SongType, pk)
+    Songdetails = get_object_or_404(SongType, pk=pk)
     return render(request, 'website/songdetails.html', { 'newsongs' : Songdetails})
 
 
