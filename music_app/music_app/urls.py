@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^song/(?P<pk>\d+)/remove/$', views.RemoveSong, name='RemoveSong'),
 
     # Blog urls
-    url(r'^blog/$', views.BlogList, name='BlogList'),
+    url(r'^blog/$', views.BlogLists, name='BlogLists'),
     url(r'^blog/new/$', views.NewBlog, name='NewBlog'),
     url(r'^blog/(?P<pk>\d+)/edit/$', views.EditBlog, name='EditBlog'),
     url(r'^blog/(?P<pk>\d+)/$', views.BlogDetails, name='BlogDetails'),

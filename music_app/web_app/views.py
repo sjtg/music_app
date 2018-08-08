@@ -42,7 +42,7 @@ def AlbumDetails(request, pk):
     Albumdetails = get_object_or_404(AlbumType, pk=pk)
     return render(request, 'website/albumdetails.html', {'newalbums' : Albumdetails})
 
-# Delete Album
+
 
 
 # Details about song
@@ -56,25 +56,6 @@ def SongDetails(request, pk):
     return render(request, 'website/songdetails.html', { 'newsongs' : Songdetails})
 
 
-
-
-
-
-# Delete song
-@login_required
-def RemoveSong(request, pk):
-    songs = get_object_or_404(SongType, pk=pk)
-    if songs.is_valid():
-        newsongs = newsongs.delete()
-        newsongs.user = request.user
-        newsongs.delete()
-        return redirect('SongLists')
-
-
-# def RemoveSong(request, pk):
-#     newsongs = get_object_or_404(SongType, pk=pk)
-#     newsongs.delete()
-#     return redirect('post_list')
 
 #  Add New Artist
 @login_required
@@ -110,7 +91,6 @@ def EditArtists(request, pk):
     return render(request, 'website/editartists.html', {'form':form})
 
 
-# Delete Artist
 
 
 #  Uploading New Album
@@ -147,7 +127,6 @@ def EditAlbums(request, pk):
     return render(request, 'website/editalbums.html', {'form' : form})
 
 
-# Delete Artist
 
 
 # Uploading New Song
@@ -184,7 +163,7 @@ def EditSong(request, pk):
 
 
 # Blog list function
-def BlogList(request):
+def BlogLists(request):
     Bloglist = BlogPosts.objects.all().order_by('PublishedDate')
     return render(request, 'website/bloglist.html', {'NewBlog' : Bloglist })
 
@@ -230,3 +209,52 @@ def EditBlog(request, pk):
     else:
         form = NewBlogForm(instance=newblogs)
     return render(request, 'website/editblogs.html', {'form' : form})
+
+
+# Delete Blog
+@login_required
+def RemoveBlog(request, pk):
+    blogs = get_object_or_404(BlogPosts, pk=pk)
+    if oldblogs.is_valid():
+        oldblogs = oldblogs.delete()
+        oldblogs.user = oldblogs.user
+        oldblogs.delete()
+        return redirect('BlogLists')
+
+
+# Delete Artist
+@login_required
+def RemoveArtist(request, pk):
+    artists = get_object_or_404(ArtistType, pk=pk)
+    if artists.is_valid():
+        oldartists = oldartists.delete()
+        oldartists.user = request.user
+        oldartists.delete()
+        return redirect('ArtistLists')
+
+#  Delete Album
+@login_required
+def RemoveAlbum(request, pk):
+    albums = get_object_or_404(AlbumType, pk=pk)
+    if albums.is_valid():
+        oldalbums = oldalbums.delete()
+        oldalbums.user = request.user
+        oldalbums.delete()
+        return redirect('AlbumLists')
+
+
+# Delete song
+@login_required
+def RemoveSong(request, pk):
+    songs = get_object_or_404(SongType, pk=pk)
+    if songs.is_valid():
+        oldsongs = oldsongs.delete()
+        oldsongs.user = request.user
+        oldsongs.delete()
+        return redirect('SongLists')
+
+
+# def RemoveSong(request, pk):
+#     newsongs = get_object_or_404(SongType, pk=pk)
+#     newsongs.delete()
+#     return redirect('post_list')
