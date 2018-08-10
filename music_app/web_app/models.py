@@ -41,7 +41,6 @@ class ArtistType(models.Model):
     DateJoined = models.DateTimeField(blank=True, null=True)
     ArtistPictures = models.FileField(upload_to='Genre/Artist/', blank=False, null=True)
 
-
     def __unicode__(self):
         Name = str(self.Name)
         return Name
@@ -53,7 +52,6 @@ class AlbumType(models.Model):
     AlbumCover = models.FileField(upload_to='Genre/Artist/Album/', blank=False, null=True)
     YearReleased = models.DateTimeField(blank=True, null=True)
 
-
     def __unicode__(self):
         AlbumName = str(self.AlbumName)
         return AlbumName
@@ -61,6 +59,7 @@ class AlbumType(models.Model):
 
 #Song class
 class SongType(models.Model):
+    # ArtistNames = models.ForeignKey(AlbumType, related_name="ArtistTypes")
     AlbumNames = models.ForeignKey(AlbumType, related_name="AlbumTypes")
     SongName = models.CharField(max_length=100)
     SongImage = models.FileField(upload_to='Genre/Artist/Album/Song/Image', blank=False, null=True)

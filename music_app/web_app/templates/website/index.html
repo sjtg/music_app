@@ -76,6 +76,33 @@
       </div>
     </div>
 
+    <!-- list of songs -->
+
+
+  {% for NewSongs in NewSong %}
+    <div class="row">
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{NewSongs.SongImage.url}}" class="thumbnail" width="50%;">
+            </div>
+            <div class="card-content">
+            <span class="card-title">{{NewSongs.SongName}}</span>
+              <p>{{ NewSongs.AlbumNames }}</p>
+              <!-- <p>{{ NewSongs.ArtistNames }}</p> -->
+            </div>
+            <div class="card-action">
+              <a href="{% url 'SongDetails' pk=NewSongs.pk %}">Listen</a>
+            </div>
+          </div>
+        </div>
+      {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+          {% if forloop.last %}</div>{% endif %}
+
+    {% endfor %}
+
+    <!-- end of list of songs  -->
+
     <div class="s3">
     </div>
 
