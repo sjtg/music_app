@@ -43,11 +43,13 @@
             <h6 class="album-name">{{newsongs.AlbumNames}}</h6>
             <div id="audiowrap">
                 <div id="audio0">
-                    <!-- <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio> -->
-                    <audio id="audio1" preload controls>
+                    <!-- <audio id="audio1" preload controls>Your browser does not support HTML5 Audio!/audio> -->
+                    <audio controls  id="audio1" preload controls>
                           <source src="{{newsongs.Song.url}}" type="audio/ogg">
                           <source src="{{newsongs.Song.url}}" type="audio/mpeg">
+                          <a id="btnPrev">&larr;</a><a id="btnNext">&rarr;</a>
                     </audio>
+
                 </div>
 
 
