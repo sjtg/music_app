@@ -503,7 +503,7 @@ nav{
   }
 }
 
-input[type="range"] {
+/*input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
   position: absolute;
@@ -618,4 +618,4 @@ input[type="range"]:focus::-ms-fill-lower {
 
 input[type="range"]:focus::-ms-fill-upper {
   background: #f2f2f2;
-}
+}*/
