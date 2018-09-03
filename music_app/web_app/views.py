@@ -46,8 +46,8 @@ def AlbumDetails(request, pk):
 
 # Song List
 def SongLists(request):
-    Songlists = get_object_or_404(SongType)
-    return render(request, 'website/songlists.html', { 'newsongs' : Songlists})
+    Songlists = SongType.objects.all().order_by('-ReleaseDate')
+    return render(request, 'website/songlists.html', { 'NewSong' : Songlists})
 
 # Song Details
 def SongDetails(request, pk):
