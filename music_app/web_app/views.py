@@ -12,8 +12,9 @@ import time
 
 # Home HomePage
 def HomePages(request):
-    Home = SongType.objects.all().order_by('-ReleaseDate')
-    return render(request, 'website/index.html', {'NewSong' :  Home})
+    SongHome = SongType.objects.all().order_by('-ReleaseDate')
+    BlogHome = BlogPosts.objects.all().order_by('-PublishedDate')
+    return render(request, 'website/index.html', {'NewSong' :  SongHome, 'NewBlog' : BlogHome })
 
 #  List of Genres
 def Genres(request):

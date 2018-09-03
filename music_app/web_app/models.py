@@ -9,7 +9,7 @@ from django.utils.dateparse import parse_datetime
 from django.db import models
 
 
-
+# Blog Post / News Letter 
 class BlogPosts(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     Titles =  models.CharField(max_length=100)
@@ -18,7 +18,7 @@ class BlogPosts(models.Model):
     PublishedDate = models.DateTimeField(blank=True, null=True)
 
     def __unicode__(self):
-        Title = str(self.Title)
+        Titles = str(self.Titles)
         return Titles
 
 
