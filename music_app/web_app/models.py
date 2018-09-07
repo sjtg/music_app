@@ -7,6 +7,8 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 from django.db import models
+from vote.models import VoteModel
+
 
 
 # Blog Post / News Letter 
@@ -69,3 +71,13 @@ class SongType(models.Model):
     def __unicode__(self):
         SongName = str(self.SongName)
         return SongName
+
+
+#Voted songs models 
+class VoteSong(VoteModel, models.Model):
+    VotedSong = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        VotedSong = str(self.VotedSong)
+	return VotedSong
+

@@ -14,6 +14,13 @@ import time
 def HomePages(request):
     SongHome = SongType.objects.all().order_by('-ReleaseDate')
     BlogHome = BlogPosts.objects.all().order_by('-PublishedDate')
+    query = request.GET.get("searchs")
+    if query:
+        Home = Home.filter(
+            Q(title__icontains=query)|
+            Q(description__icontains=query)
+        ).distinct()
+
     return render(request, 'website/index.html', {'NewSong' :  SongHome, 'NewBlog' : BlogHome })
 
 #  List of Genres
@@ -257,3 +264,17 @@ def RemoveSong(request, pk):
 #     newsongs = get_object_or_404(SongType, pk=pk)
 #     newsongs.delete()
 #     return redirect('post_list')
+
+
+
+#search function
+def search(request):
+    SearchList = SongType.objects.all().order_by('-ReleaseDate')
+    query = request.GET.get("search")
+    if query:
+        SearchList = SearchList.filter(
+            Q(title__icontains=query)|
+            Q(description__icontains=query)|
+            Q(user__icontains=query)
+        ).distinct()
+    return render(request, 'website/searchlist.html', {'NewSong' : SearchList})

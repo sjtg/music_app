@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'web_app',
     # 'blog',
     'widget_tweaks',
+    'vote',
 ]
 
 MIDDLEWARE = [
