@@ -6,7 +6,7 @@ from django.views.generic import View
 from .models import *
 from .forms import *
 from django.utils import timezone
-# from .filters import PhotoFilter
+from .filters import SearchFilter
 import time
 
 
@@ -16,9 +16,9 @@ def HomePages(request):
     BlogHome = BlogPosts.objects.all().order_by('-PublishedDate')
     query = request.GET.get("searchs")
     if query:
-        Home = Home.filter(
-            Q(title__icontains=query)|
-            Q(description__icontains=query)
+        SongHome = SongHome.filter(
+            Q(AlbumNames__icontains=query)|
+            Q(SongName__icontains=query)
         ).distinct()
 
     return render(request, 'website/index.html', {'NewSong' :  SongHome, 'NewBlog' : BlogHome })
@@ -273,8 +273,7 @@ def search(request):
     query = request.GET.get("search")
     if query:
         SearchList = SearchList.filter(
-            Q(title__icontains=query)|
-            Q(description__icontains=query)|
-            Q(user__icontains=query)
+            Q(AlbumNames__icontains=query)|
+            Q(SongName__icontains=query)
         ).distinct()
     return render(request, 'website/searchlist.html', {'NewSong' : SearchList})

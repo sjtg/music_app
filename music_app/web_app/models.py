@@ -79,5 +79,5 @@ class VoteSong(VoteModel, models.Model):
 
     def __unicode__(self):
         VotedSong = str(self.VotedSong)
-	return VotedSong
+        return VotedSong
 
