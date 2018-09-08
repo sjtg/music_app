@@ -13,110 +13,83 @@
 <div class="container">
   <div class="row">
 
-    <div class="s3">
-    </div>
 
-      <div class="s6">
-      <div class="slider">
-        <ul class="slides">
-          <li>
+    <div class="col s9 white lighten-1">
+        <br>
+        <h7>
+        Album Highlights
+        
+      </h7>
+      
+      <hr>
 
-            <img src="{% static 'img/s00.png' %}" width="20%">
-
-           <!-- random image -->
-            <div class="caption center-align" >
-              <h5 class="green-text green-text  darken-4"><b class="textbackground">Urban Africa</b></h3>
-              <h5 class="green-text green-text  darken-4"><b class="textbackground">Real Estate Group</b></h5>
-
-            </div>
-          </li>
-          <li>
-            <img  src="{% static 'img/s4.jpg' %}"> <!-- random image -->
-            <div class="caption left-align">
-              <!-- <h3 class="black-text black-text  lighten-1"><b>Left Aligned Caption</b></h3> -->
-              <h3 class="green-text green-text  darken-4"><b class="textbackground">Commercial property development</b></h3>
-            </div>
-          </li>
-          <li>
-            <img src="{% static 'img/s5.jpg' %}" style=" width: 100%;"> <!-- random image -->
-            <div class="caption right-align">
-              <h3 class="green-text green-text  darken-4"><b  class="textbackground">Asset & property management</b></h3>
-              <!-- <h5 class="black-text black-text  lighten-1"><b  class="textbackground">Here's our small slogan.</b></h5> -->
-            </div>
-          </li>
-          <li>
-            <img src="{% static 'img/s3.jpg' %}"> <!-- random image -->
-            <div class="caption center-align">
-              <h3 class="green-text green-text  darken-4"><b class="textbackground">Commercial property advisory</b></h3>
-              <!-- <h5 class="black-text black-text lighten-1"><b class="textbackground">Here's our small slogan.</b></h5> -->
-            </div>
-          </li>
-          <li>
-            <img src="{% static 'img/s0.jpg' %}"> <!-- random image -->
-            <div class="caption right-align">
-              <!-- <h3 class="black-text black-text  lighten-1"><b>This is our big Tagline!</b></h3>
-              <h5 class="black-text black-text  lighten-1"><b>Here's our small slogan</b></h5> -->
-            </div>
-          </li>
-            <li>
-              <img src="{% static 'img/s1.jpg' %}" > <!-- random image -->
-              <div class="caption center-align">
-                <!-- <h3 class="black-text black-text  lighten-1"><b>This is our big Tagline!</b></h3>
-                <h5 class="black-text black-text lighten-1"><b>Here's our small slogan.</b></h5> -->
-              </div>
-            </li>
-            <li>
-              <img src="{% static 'img/s2.jpg' %}" width="50%"> <!-- random image -->
-              <div class="caption left-align">
-                <!-- <h3 class="black-text black-text  lighten-1"><b>This is our big Tagline!</b></h3>
-                <h5 class="black-text black-text  lighten-1"><b>Here's our small slogan.</b></h5> -->
-              </div>
-            </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- list of songs -->
-    <h5>
-  Featured New Releases
-  </h5>
-  <hr>
-  {% for NewSongs in NewSong %}
-    <div class="row">
-
-
-        <div class="col s12 m3">
-
-
-
-
-
+       {% for NewAlbums in NewAlbum %}
+  
+        <div class="col s1 m4">
           <div class="card">
             <div class="card-image">
-              <img src="{{NewSongs.SongImage.url}}" class="thumbnail" width="50%;">
+              <img src="{{NewAlbums.AlbumCover.url}}" class="thumbnail">
             </div>
-            <div class="card-content">
-            <span class="card-title">{{NewSongs.SongName}}</span>
-              <p>{{ NewSongs.AlbumNames }}</p>
-              <!-- <p>{{ NewSongs.ArtistNames }}</p> -->
+            <div class="card-content grey lighten-1">
+            <!-- <span class="card-title" style="font-size:14px; font-weight: bold;">{{NewAlbum.AlbumName}}</span> -->
+              <p style="font-size:10px;">{{ NewAlbums.AlbumNames }}</p>
             </div>
-            <div class="card-action">
-              <a href="{% url 'SongDetails' pk=NewSongs.pk %}">Listen</a>
+            <div class="card-action grey lighten-1" style="font-size:12px; font-weight: bold;">
+              <a href="{% url 'AlbumDetails' pk=NewAlbums.pk %}">Listen</a>
             </div>
           </div>
         </div>
-      {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+      {% if forloop.counter|divisibleby:4 %}<div class="row">{% endif %}
           {% if forloop.last %}</div>{% endif %}
 
     {% endfor %}
 
-    <!-- end of list of songs  -->
+  </div>
 
-    <div class="s3">
-    </div>
 
-    </div>
+
+<!-- Artist  -->
+
+
+      
+<div class="">
+
+       {%  if NewArtist.Name %}
+    
+        
+        <div class="col s1 m2">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{NewArtist.ArtistPictures.url}}" width="20px;" class="thumbnail" >
+            </div>
+            <div class="card-content">
+            <span class="card-title" style="font-size:14px; font-weight: bold;">{{NewArtist.Name}}</span>
+              
+            </div>
+            <div class="card-action" style="font-size:10px;">
+             
+            </div>
+          </div>
+        </div>
+      
+      
+
+    {% endif %}
 </div>
+
+
+
+    </div>
+
+</div>
+
+
+  
+
+    
+
+  
+  
 <!-- End of the container  -->
 
 {% endblock %}

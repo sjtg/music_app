@@ -36,7 +36,8 @@ def ArtistLists(request):
 # Artist Details
 def ArtistDetails(request, pk):
     Artistdetail = get_object_or_404(ArtistType, pk=pk)
-    return render(request, 'website/artistdetails.html', {'newartist' : Artistdetail})
+    ArtistAlbum = AlbumType.objects.all().order_by('-YearReleased')
+    return render(request, 'website/artistdetails.html', {'NewArtist' : Artistdetail, 'NewAlbum' : ArtistAlbum})
 
 
 # Album Details
@@ -52,7 +53,7 @@ def AlbumLists(request):
 # Album Details
 def AlbumDetails(request, pk):
     Albumdetails = get_object_or_404(AlbumType, pk=pk)
-    return render(request, 'website/albumdetails.html', {'newalbums' : Albumdetails})
+    return render(request, 'website/albumdetails.html', {'NewAlbum' : Albumdetails})
 
 
 # Song List
