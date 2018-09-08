@@ -82,73 +82,70 @@
 
 
     <!-- end of list of songs  -->
-
     </div>
-
     </div>
 
 <!-- End of the container  -->
 
 
 <!-- container for the music content -->
+      <div  class="container">
+        <div class="row">
+        <div class ="col s12">
+
 
     
 
-  <div class ="row">
-
-      <div  class="container">
-        <div class="row">
-
-
-     
-
-
-
-    <h6>
+      <div class="col s8 white lighten-1">
+        <br>
+        <h7>
         Featured New Releases
         <span class="right"><a href="{% url 'SongLists' %}">All Featured New Releases</a></span>
-      </h6>
+      </h7>
       
       <hr>
 
-
-
        {% for NewSongs in NewSong %}
-    
-        
-        <div class="col  s12 m3">
+  
+        <div class="col s3 m4">
           <div class="card">
             <div class="card-image">
               <img src="{{NewSongs.SongImage.url}}" class="thumbnail">
             </div>
-            <div class="card-content">
+            <div class="card-content grey lighten-1">
             <span class="card-title" style="font-size:10px;">{{NewSongs.SongName}}</span>
               <p style="font-size:10px;">{{ NewSongs.AlbumNames }}</p>
-              <!-- <p>{{ NewSongs.ArtistNames }}</p> -->
             </div>
-            <div class="card-action" style="font-size:10px;">
+            <div class="card-action grey lighten-1" style="font-size:10px;">
               <a href="{% url 'SongDetails' pk=NewSongs.pk %}">Listen</a>
             </div>
           </div>
         </div>
-      {% if forloop.counter|divisibleby:2 %}<div class="row">{% endif %}
+      {% if forloop.counter|divisibleby:4 %}<div class="row">{% endif %}
           {% if forloop.last %}</div>{% endif %}
 
     {% endfor %}
 
+  </div>
+
+ 
 
 
-      <h6>
-        Featured News Letter 
-      </h6>
+     
       
+      <div class="col s4">
+        <br>
+         <h7>
+        Featured News Letter 
+      </h7>
       <hr>
+
 
 
        {% for NewBlogs in NewBlog %}
     
         
-        <div class="col  s12 m3">
+        <div class="col  s2 m12">
           <div class="card">
             <div class="card-image">
               <img src="{{NewBlogs.BlogImage.url}}" class="thumbnail">
@@ -162,22 +159,25 @@
             </div>
           </div>
         </div>
-      {% if forloop.counter|divisibleby:2 %}<div class="row">{% endif %}
+      {% if forloop.counter|divisibleby:4 %}<div class="row">{% endif %}
           {% if forloop.last %}</div>{% endif %}
 
     {% endfor %}
 
+  </div>
+
     <!-- end -->
     
-
   </div>
-    </div>
-
-
-
-
-
   </div>
+</div>
+ 
+
+
+
+
+
+ 
 
   
 
@@ -186,37 +186,3 @@
 {% endblock %}
 
 
-
-    <!-- list of songs -->
-    <h5>
-  Featured New Releases
-  </h5>
-  <hr>
-  {% for NewSongs in NewSong %}
-    <div class="row">
-
-
-        <div class="col s12 m3">
-
-
-
-
-
-          <div class="card">
-            <div class="card-image">
-              <img src="{{NewSongs.SongImage.url}}" class="thumbnail" width="50%;">
-            </div>
-            <div class="card-content">
-            <span class="card-title">{{NewSongs.SongName}}</span>
-              <p>{{ NewSongs.AlbumNames }}</p>
-              <!-- <p>{{ NewSongs.ArtistNames }}</p> -->
-            </div>
-            <div class="card-action">
-              <a href="{% url 'SongDetails' pk=NewSongs.pk %}">Listen</a>
-            </div>
-          </div>
-        </div>
-      {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
-          {% if forloop.last %}</div>{% endif %}
-
-    {% endfor %}
