@@ -17,8 +17,7 @@ def HomePages(request):
     query = request.GET.get("searchs")
     if query:
         SongHome = SongHome.filter(
-           #Q(AlbumNames__icontains=query)|
-            Q(SongName__icontains=query)
+           Q(SongName__icontains=query)
         ).distinct()
 
     return render(request, 'website/index.html', {'NewSong' :  SongHome, 'NewBlog' : BlogHome })
@@ -30,7 +29,7 @@ def Genres(request):
 
 # List of Artist
 def ArtistLists(request):
-    Artistlist = SongType.objects.all().order_by('PublishedDate')
+    Artistlist = ArtistType.objects.all().order_by('-DateJoined')
     return render(request, 'website/artistlist.html', {'newartist' : Artistlist })
 
 
@@ -42,8 +41,13 @@ def ArtistDetails(request, pk):
 
 # Album Details
 def AlbumLists(request):
-    Albumlists = get_object_or_404(AlbumType)
-    return render(request, 'website/albumlists.html', { 'newalbums': Albumlists})
+    Albumlists = AlbumType.objects.all().order_by('-YearReleased')
+    query = request.GET.get("searchs")
+    if query:
+        Albumlists = Artistlist.filter(
+           Q(AlbumName__icontains=query)
+        ).distinct()
+    return render(request, 'website/albumlists.html', { 'NewAlbum': Albumlists})
 
 # Album Details
 def AlbumDetails(request, pk):

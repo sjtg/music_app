@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% load static %}
@@ -7,5 +8,64 @@
 {% load widget_tweaks %}
 
 {% block content  %}
+
+
+<br>
+
+<!-- container for the music content -->   
+  <div class ="container">
+
+      
+        <div class="row">
+
+        <div class="white lighten-1">
+        <br>
+      	<br>
+	      <h7>
+	        Featured New Album
+	        <span class="right"><a href="{% url 'SongLists' %}">All Featured New Release Songs</a></span>
+	      </h7>
+	      <br>
+	      <br>
+	      <hr>
+	      <br>
+
+
+
+       {% for NewAlbums in NewAlbum %}
+    
+        
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{NewAlbums.AlbumCover.url}}" class="thumbnail">
+            </div>
+            <div class="card-content  grey lighten-1">
+            <span class="card-title" style="font-size:10px;">{{NewAlbums.AlbumName}}</span>
+              <p style="font-size:12px;">{{ NewAlbums.AlbumNames }}</p>
+              <a href="{%  url 'ArtistDetails'  pk=NewAlbums.pk %}">{{NewAlbums.ArtistName}}</a>
+            </div>
+            <div class="card-action  grey lighten-1" style="font-size:10px;">
+              <a href="{% url 'AlbumDetails' pk=NewAlbums.pk %}">Listen</a>
+            </div>
+          </div>
+        </div>
+      {% if forloop.counter|divisibleby:2 %}<div class="row">{% endif %}
+          {% if forloop.last %}</div>{% endif %}
+
+    {% endfor %}
+
+    	  </div>
+
+		  </div>
+    	
+
+
+
+
+
+  </div>
+
+ 
 
 {% endblock %}

@@ -8,3 +8,7 @@ class SearchFilter(django_filters.FilterSet):
         model =  SongType
         fields = [ 'SongName',]
 
+    class Meta:
+    	model = AlbumType
+    	fields =  ['AlbumName',]
+
