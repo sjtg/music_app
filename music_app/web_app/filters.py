@@ -6,5 +6,5 @@ class SearchFilter(django_filters.FilterSet):
     # file_name = django_filters.CharFilter(lookup_expr='icontains')
     class Meta:
         model =  SongType
-        fields = [ 'AlbumNames', 'SongName',]
+        fields = [ 'SongName',]
 

@@ -17,7 +17,7 @@ def HomePages(request):
     query = request.GET.get("searchs")
     if query:
         SongHome = SongHome.filter(
-            Q(AlbumNames__icontains=query)|
+           #Q(AlbumNames__icontains=query)|
             Q(SongName__icontains=query)
         ).distinct()
 
