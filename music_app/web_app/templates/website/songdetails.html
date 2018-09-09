@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'musicbase.html' %}
 
 {% load static %}
 
@@ -9,6 +9,98 @@
 {% block content  %}
 
 {% if newsongs.SongName %}
+
+
+    
+
+    <!--  -->
+
+
+    <div class="container">
+    <div class="top">
+        <div class="menu float-r">
+            <a href="#"><span></span></a>
+            <a href="#"><span></span></a>
+            <a href="#"><span></span></a>
+        </div>
+    </div>
+    <div class="side-menu">
+            <a href="#" class="close"><i class="fa fa-angle-left"></i></a>
+            <ul>
+                <li><a href="#" class="side-search"><i class="fa fa-search fa-fw"></i> Search</a></li>
+                <li class="active"><a href="#" class="side-currently-playing"><i class="fa fa-headphones fa-fw"></i> Currently Playing</a></li>
+                <li><a href="#" class="side-popular-music"><i class="fa fa-list-ol fa-fw"></i> Popular Music</a></li>
+                <li><a href="#" class="side-your-playlist"><i class="fa fa-music fa-fw"></i> Your Playlists</a></li>
+                <li><a href="#" class="side-your-profile"><i class="fa fa-user fa-fw"></i> Your Profile</a></li>
+                <li><a href="#" class="side-settings"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
+            </ul>
+        <div class="side-menu-background"></div>
+    </div>
+    <div class="center">
+        <div class="nav">
+        <a href="#" class="side-menu-trigger"><i class="fa fa-bars"></i></a>
+        </div>
+        <div class="cover">
+            <div class="jcarousel">
+                <ul>
+            <li><img src="{{newsongs.SongImage.url}}" alt="" /></li>
+            </ul>
+            </div>
+            
+            <!--<img src="https://upload.wikimedia.org/wikipedia/en/6/64/The-Days-Nights-EP-by-Avicii.jpg" alt="" />-->
+        </div>
+        <ul class="jcarousel-pagination"></ul>
+        <div class="info">
+            <div class="name">
+                <h3 class="song">{{newsongs.SongName}}</h3>
+                <p class="artist">{{newsongs.AlbumNames}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="action">
+            <a href="#" class="previous jcarousel-prev"><i class="fa fa-step-backward"></i></a>
+            <a href="#" class="play"><i class="fa fa-play fa-fw"></i></a>
+            <a href="#" class="next jcarousel-next"><i class="fa fa-step-forward"></i></a>
+        </div>
+        <div class="length">
+            <label for="fader">0:00</label>
+            <input type="range" min="0" max="100" value="40" id="fader" step="1">
+            <output for="fader" class="duration"></output>
+        </div>
+        <div class="options">
+            <a href="#" class="shuffle active"><i class="fa fa-random"></i></a>
+            <a href="#" class="replay"><i class="fa fa-refresh"></i></a>
+            <a href="#" class="volume"><i class="fa fa-volume-up"></i></a>
+            <a href="#" class="favorite active"><i class="fa fa-heart"></i></a>
+        </div>
+        <div class="volume-slider">
+            <a href="#" class="close"><i class="fa fa-chevron-down"></i></a>
+            <div class="volume-slider-inner">
+                <i class="fa fa-volume-down"></i>
+                <input class="volume-slider" type=range min=0 max=100 value=0 id=fader step=1 oninput="outputUpdate(value)">
+                <i class="fa fa-volume-up"></i>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-image the-nights active"></div>
+    <div class="overlay"></div>
+</div>
+
+
+<audio  type="audio/mpeg"> 
+  <source src="{{newsongs.Song.url}}" type="audio/ogg">
+  <source src="{{newsongs.Song.url}}" type="audio/mpeg">
+
+</audio>
+  {% endif %}
+
+{% endblock %}
+
+
+
+
+
 <div class="player-container">
             <!-- <div class="player-bg player-1 un" style="display: none;">
             <img src="{{newsongs.SongImage.url}}" class="album-art">
@@ -59,24 +151,8 @@
                     <a id="btnPrev">&larr;</a><a id="btnNext">&rarr;</a>
                 </div>
             </div>
-            <!-- <div class="player-elements">
-                <div class="btn-loop"><img src="http://salehriaz.com/Projects/MusicPlayer/img/loop.svg"></div>
-                <div class="btn-slow"><img src="http://salehriaz.com/Projects/MusicPlayer/img/slow.svg"></div>
-                <div class="btn-play btn-play2" id="btnPlay2"><img src="http://salehriaz.com/Projects/MusicPlayer/img/play.svg"></div>
-                <div class="btn-play" id="btnPause2" style="display:none;"><img src="http://salehriaz.com/Projects/MusicPlayer/img/pause.svg"></div>
-                <div class="btn-fast"><img src="http://salehriaz.com/Projects/MusicPlayer/img/fast.svg"></div>
-                <div class="btn-shuffle"><img src="http://salehriaz.com/Projects/MusicPlayer/img/shuffle.svg"></div>
-                  <img src="http://salehriaz.com/Projects/MusicPlayer/img/equalizer.svg" class="equalizer">
-            </div> -->
+           
 
             </div>
-              <!-- <iframe style="display: none;" width="100%" height="100" scrolling="no" frameborder="no"  src="{{newsongs.Song.url}}"></iframe> -->
+              
         </div>
-
-        <audio id="audio1">
-          <source src="{{newsongs.Song.url}}" type="audio/ogg">
-              <source src="{{newsongs.Song.url}}" type="audio/mpeg">
-        </audio>
-  {% endif %}
-
-{% endblock %}

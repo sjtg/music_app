@@ -17,19 +17,39 @@ def HomePages(request):
     query = request.GET.get("searchs")
     if query:
         SongHome = SongHome.filter(
-           Q(SongName__icontains=query)
+           Q(SongName__icontains=query)|
+           Q(ReleaseDate__icontains=query)
         ).distinct()
+
+    if query:
+        BlogHome = BlogHome.filter(
+            Q(Titles__icontains=query)|
+            Q(Descrption__icontains=query)|
+            Q(PublishedDate__icontains=query)
+            ).distinct()
 
     return render(request, 'website/index.html', {'NewSong' :  SongHome, 'NewBlog' : BlogHome })
 
 #  List of Genres
 def Genres(request):
     Genrelist = GenreType.objects.all().order_by('Genre')
+    query = request.GET.get("searchs")
+    if query:
+        Genrelist = Genrelist.filter(
+            Q(Genre__icontains=query)
+            ).distinct()
     return render(request, 'website/', {'newartist' : Genrelist})
 
 # List of Artist
 def ArtistLists(request):
     Artistlist = ArtistType.objects.all().order_by('-DateJoined')
+    query = request.GET.get("searchs")
+    if query:
+        Artistlist = Artistlist.filter(
+            Q(Name__icontains=query)|
+            Q(Bio__icontains=query)|
+            Q(Born__icontains=query)
+            ).distinct()
     return render(request, 'website/artistlist.html', {'newartist' : Artistlist })
 
 
@@ -37,6 +57,13 @@ def ArtistLists(request):
 def ArtistDetails(request, pk):
     Artistdetail = get_object_or_404(ArtistType, pk=pk)
     ArtistAlbum = AlbumType.objects.all().order_by('-YearReleased')
+    query = request.GET.get("searchs")
+    if query:
+        Artistdetail = Artistdetail.filter(
+            Q(Name__icontains=query)|
+            Q(Born__icontains=query)|
+            Q(Bio__icontains=query)
+            ).distinct()
     return render(request, 'website/artistdetails.html', {'NewArtist' : Artistdetail, 'NewAlbum' : ArtistAlbum})
 
 
@@ -46,24 +73,43 @@ def AlbumLists(request):
     query = request.GET.get("searchs")
     if query:
         Albumlists = Artistlist.filter(
-           Q(AlbumName__icontains=query)
+           Q(AlbumName__icontains=query)|
+           Q(YearReleased__icontains=query)
         ).distinct()
     return render(request, 'website/albumlists.html', { 'NewAlbum': Albumlists})
 
 # Album Details
 def AlbumDetails(request, pk):
     Albumdetails = get_object_or_404(AlbumType, pk=pk)
+    query = request.GET.get("searchs")
+    if query:
+        Albumdetails = Artistdetails.filter(
+            Q(AlbumName__icontains=query)|
+            Q(YearReleased__icontains=query)
+            ).distinct()
     return render(request, 'website/albumdetails.html', {'NewAlbum' : Albumdetails})
 
 
 # Song List
 def SongLists(request):
     Songlists = SongType.objects.all().order_by('-ReleaseDate')
+    query = request.GET.get("searchs")
+    if query:
+        Songlists = Songlists.filter(
+           Q(SongName__icontains=query)|
+           Q(ReleaseDate__icontains=query)
+        ).distinct()
+
     return render(request, 'website/songlists.html', { 'NewSong' : Songlists})
 
 # Song Details
 def SongDetails(request, pk):
     Songdetails = get_object_or_404(SongType, pk=pk)
+    if query:
+        Songdetails = Songdetails.filter(
+           Q(SongName__icontains=query)|
+           Q(ReleaseDate__icontains=query)
+        ).distinct()
     return render(request, 'website/songdetails.html', { 'newsongs' : Songdetails})
 
 
@@ -176,11 +222,25 @@ def EditSong(request, pk):
 # Blog list function
 def BlogLists(request):
     Bloglist = BlogPosts.objects.all().order_by('PublishedDate')
+    query = request.GET.get("searchs")
+    if query:
+        Bloglist = Bloglist.filter(
+            Q(Titles__icontains=query)|
+            Q(Descrption__icontains=query)|
+            Q(PublishedDate__icontains=query)
+            ).distinct()
     return render(request, 'website/bloglists.html', {'NewBlog' : Bloglist })
 
 # Blog details
 def BlogDetails(request, pk):
     Blogdetails = get_object_or_404(BlogPost, pk=pk)
+    query = request.GET.get("searchs")
+    if query:
+        Blogdetails = Blogdetails.filter(
+            Q(Titles__icontains=query)|
+            Q(Descrption__icontains=query)|
+            Q(PublishedDate__icontains=query)
+            ).distinct()
     return render(request, 'website/blogdetails.html', {'NewBlog' : Blogdetails})
 
 
